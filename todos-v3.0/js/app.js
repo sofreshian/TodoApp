@@ -1,7 +1,7 @@
+// Global
 let todos = [];
-let activeTodos = [];
-let completedTodos = [];
 
+// Node
 const $todos = document.querySelector('.todos');
 const $inputTodo = document.querySelector('.input-todo');
 const $completeAll = document.getElementById('ck-complete-all');
@@ -13,17 +13,12 @@ const $all = document.getElementById('all');
 const $active = document.getElementById('active');
 const $completed = document.getElementById('completed');
 
-const divideTodos = () => {
-  activeTodos = todos.filter(todo => !todo.completed);
-  completedTodos = todos.filter(todo => todo.completed);
-};
-
 const render = () => {
-  // if ($todos.hasChildNodes()) [...$todos.childNodes].forEach(todo => $todos.removeChild(todo));
+  if ($todos.hasChildNodes()) [...$todos.childNodes].forEach(todo => $todos.removeChild(todo));
 
   let group = [];
-
-  divideTodos(); // Closure
+  const activeTodos = todos.filter(todo => !todo.completed);
+  const completedTodos = todos.filter(todo => todo.completed);
 
   if ($all.classList.contains('active')) group = todos;
   else if ($active.classList.contains('active')) group = activeTodos;
